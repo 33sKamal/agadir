@@ -34,13 +34,7 @@ Route::post('/users', function (Request $request) {
 
 Route::prefix('users')->group(function () {
 
-    // Route::get('/', function () {
-    //     return view('users.index');
-    // });
-
-
-    Route::get('/', [UserContfroller::class, 'index']);
-
+    Route::get('/', [UserContfroller::class, 'index'])->middleware('have-number-akhouya');
 
     Route::get('/create-users', function () {
         return view('users.create-users');
@@ -58,37 +52,13 @@ Route::prefix('users')->group(function () {
         return back()->with('message', 'Welcome ' . $request->name . ' account is done chouf ton email : ' . $request->email);
     });
 
-
-    // hadi bach njib les users
-    // Route::get('/get-users', function () {
-
-    //     $users = User::get();
-
-    //     return view('users.get-users')->with('users',$users);
-    // });
-
-
-
     Route::get('/get-users', [UserContfroller::class, 'getUsers']);
-
-    // hadi bach njib les users
-    // Route::get('/delete-users/{id}', function ($id) {
-
-    //     User::destroy($id);
-
-    //     dd(
-    //         'User has been deleted'
-    //     );
-
-
-    // });
 
     Route::get('/delete-users/{id}', [UserContfroller::class, 'deleteUser']);
 
     Route::get('/profile', function () {
         return view('users.profile');
     });
-
 
     Route::get('/login', function () {
         return view('users.login');
