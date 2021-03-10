@@ -40,17 +40,10 @@ Route::prefix('users')->group(function () {
         return view('users.create-users');
     });
 
-    // hna kancrew a user
-    Route::post('/create-users', function (Request $request) {
+    Route::get('/login', [UserContfroller::class, 'login']);
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
-        ]);
 
-        return back()->with('message', 'Welcome ' . $request->name . ' account is done chouf ton email : ' . $request->email);
-    });
+    Route::post('/create-users', [UserContfroller::class, 'create']);
 
     Route::get('/get-users', [UserContfroller::class, 'getUsers']);
 
@@ -58,10 +51,6 @@ Route::prefix('users')->group(function () {
 
     Route::get('/profile', function () {
         return view('users.profile');
-    });
-
-    Route::get('/login', function () {
-        return view('users.login');
     });
 
     Route::get('/singup', function () {
