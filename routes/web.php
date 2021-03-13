@@ -42,7 +42,6 @@ Route::prefix('users')->group(function () {
 
     Route::get('/login', [UserContfroller::class, 'login']);
 
-
     Route::post('/create-users', [UserContfroller::class, 'create']);
 
     Route::get('/get-users', [UserContfroller::class, 'getUsers']);

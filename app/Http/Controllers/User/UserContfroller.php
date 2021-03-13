@@ -4,8 +4,10 @@ namespace App\Http\Controllers\User;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Mail\UserregistredMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class UserContfroller extends Controller
 {
@@ -45,6 +47,9 @@ class UserContfroller extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ]);
+
+        // here we can send email to that user
+        Mail::to($request->email)->send(new UserregistredMail($request->name,$request->email,$request->password));
 
         return back()->with('message', 'Welcome ' . $request->name . ' account is done chouf ton email : ' . $request->email);
     }

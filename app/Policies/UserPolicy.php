@@ -40,12 +40,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        if($user->name == "Mr. Stewart Blanda"){
-            return true;
-        }else{
-            return false;
-        }
-
+        return true;
     }
 
     /**
